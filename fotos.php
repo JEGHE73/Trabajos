@@ -152,7 +152,7 @@ h1 span#ttl2{
 							<div class="form-group">
 								<input type="text" name="texto" class="form-control" placeholder="Buscar...">
 							</div>
-							<button type="submit" name="search" class="glyphicon glyphicon-search btn"></button>
+							<button type="submit" name="search" class="glyphicon glyphicon-search btn" style="background-color: rgba(4,123,113,0.6);"></button>
 						</form>
 						<li><a href="inicio.php" class="glyphicon glyphicon-home">Inicio</a></li>
 						<li><a href="perfil.php" class="glyphicon glyphicon-user">Perfil</a></li>
@@ -284,57 +284,56 @@ h1 span#ttl2{
 					
 					</div>
 					<div class="col-md-6" style="width:70%; border:1px solid silver; height:70%; margin-top:8%; margin-left:2%;">
-					<?php
+						<div class="row-fluid">
+						<?php
                 include 'php/connect_db.php';
 
                 $consulta=mysql_query("SELECT fportada FROM usuario WHERE correo='".$_SESSION['correo']."'");
                                while ($filas=mysql_fetch_array($consulta))
                                {
                                 $img_pub=$filas["fportada"];
-                                echo "<img src='$img_pub' width='938' height='445'></a><br>";
-                               }
+                                echo "<div class='row'>
+                               		<div class='col-md-12'>
+				    				<img src='$img_pub'  class='img-responsive' alt='Responsive image'style='width:100%; height:400px;'>
+				    				</div>
+									
+									<div class='row'>
+										<div class='col-md-4 col-md-offset-7'>
+												<form class='form-horizontal'action='php/gportada.php' method='post' enctype='multipart/form-data'>
+							                        <input type='file' name='archivo' id='chgprt' style='margin-top:-130px; margin-left:90%;'></input>
+							                        <input type='submit' value='Subir archivo' style='margin-top:-270px; margin-left:89%;'></input>
+									            </form>
+					    				</div>
+				    				</div>
 
-        ?>
-					<nav class="navbar navbar-default" role="navigation" style="width:50%;margin-left:50%;margin-top:-60px;">
+				    				</div>";
+				    				echo "<div class='col-md-11 col-md-offset-1'><nav class='navbar navbar-default' role='navigation' style='width:50%;margin-left:50%;margin-top:-60px;'>
 						<!-- Brand and toggle get grouped for better mobile display -->
-						<div class="navbar-header">
-							<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-								<span class="sr-only">Toggle navigation</span>
-								<span class="icon-bar"></span>
-								<span class="icon-bar"></span>
-								<span class="icon-bar"></span>
+						<div class='navbar-header'>
+							<button type='button' class='navbar-toggle' data-toggle='collapse' data-target='.navbar-ex1-collapse'>
+								<span class='sr-only'>Toggle navigation</span>
+								<span class='icon-bar'></span>
+								<span class='icon-bar'></span>
+								<span class='icon-bar'></span>
 							</button>
 						</div>
 					
 						<!-- Collect the nav links, forms, and other content for toggling -->
-						<div class="collapse navbar-collapse navbar-ex1-collapse">
-							<ul class="nav navbar-nav navbar-right">
-								<li><a href="perfil.php">Biografia</a></li>
-								<li><a href="galeria.php">Galerìa</a></li>
-								<li><a href="#">Amigos</a></li>
-								<li><a href="#">Ayuda</a></li>
+						<div class='collapse navbar-collapse navbar-ex1-collapse'>
+							<ul class='nav navbar-nav navbar-right'>
+								<li><a href='perfil.php'>Biografia</a></li>
+								<li><a href='galeria.php'>Galerìa</a></li>
+								<li><a href='#''>Amigos</a></li>
+								<li><a href='#'>Ayuda</a></li>
 							</ul>
 						</div><!-- /.navbar-collapse -->
-					</nav>
-					<form action="php/fportada.php" method="post" enctype="multipart/form-data">
-                        <input type="file" name="archivo" id="chgprt" style="margin-top:-130px; margin-left:90%;"></input>
-                        <input type="submit" value="Subir archivo" style="margin-top:-270px; margin-left:89%;"></input>
-		            </form>
+					</nav></div>";
+                               }
+
+        ?>
+					</div>
 				<center>
 				<div class="row">
-				    <div class="col-md-12">
-				    	<section id="contenedor">			
-                            <?php
-                include 'php/connect_db.php';
-                $consulta=mysql_query("SELECT imagen FROM imagenes WHERE correo='".$_SESSION['correo']."'")or die ("error");
-                           while ($filas=mysql_fetch_array($consulta))
-                               {
-                                $img_pub=$filas["imagen"];
-                                echo "<a href=''><img src='$img_pub' width='150' height='150'></a>";
-                               }
-?>
-						</section>
-					</div>
 				    <div class="row">
 				    	<div class="col-md-12" style="margin-top:10%;">
                             <?php
@@ -343,9 +342,9 @@ h1 span#ttl2{
                            while ($filas=mysql_fetch_array($consulta))
                                {
                                 $img_pub=$filas["imagen"];
-                                echo "<div class='col-xs-3 col-sm-3 col-md-3 col-lg-3'>
+                                echo "<div class='col-xs-12 col-sm-12 col-md-12 col-lg-12'>
 				    			<a href='#' class='thumbnail'>
-				    				<img src='$img_pub' style='width:170px; height:180px;'>
+				    				<img src='$img_pub' style='width:250px; height:200px;'>
 				    			</a>
 				    		</div>";
                                }

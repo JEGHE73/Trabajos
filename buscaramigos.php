@@ -80,7 +80,7 @@ h1 span#ttl2{
 						<div class="form-group">
 							<input type="text" name="texto" class="form-control" placeholder="Buscar...">
 						</div>
-						<button type="submit" name="search" class="glyphicon glyphicon-search btn"></button>
+							<button type="submit" name="search" class="glyphicon glyphicon-search btn" style="background-color: rgba(4,123,113,0.6);"></button>
 					</form>
 						<li><a href="inicio.php" class="glyphicon glyphicon-home">Inicio</a></li>
 						<li><a href="perfil.php" class="glyphicon glyphicon-user">Perfil</a></li>
@@ -130,7 +130,16 @@ h1 span#ttl2{
 						<table id="table" class="table table-hover"style="margin-left:6%;">
 							<thead>
 								<tr>
-									<th><img src="img/perfil.png" alt=""></th>
+									<th><?php
+                include 'php/connect_db.php';
+                $consulta=mysql_query("SELECT fperfil FROM usuario WHERE correo='".$_SESSION['correo']."'")or die ("error");
+                           while ($filas=mysql_fetch_array($consulta))
+                               {
+                                $img_pub=$filas["fperfil"];
+                                echo "<img src='$img_pub' width='150' heigth='150'></a><br>";
+                               }
+
+        ?></th>
 								</tr>
 							</thead>
 							<tbody>
@@ -156,7 +165,7 @@ h1 span#ttl2{
                        $anyo_act=date("Y");
                        $consulta=mysql_query("SELECT anyo FROM registro WHERE correo='".$_SESSION['correo']."'");
                        $anyo=mysql_fetch_array($consulta);
-                       echo $anyo_act - $anyo['anyo']."años";
+                       echo $anyo_act - $anyo['anyo'];
                      ?></td>
 								</tr>
 								<tr>
@@ -197,24 +206,24 @@ h1 span#ttl2{
 					</div>
 					<div class="col-md-6" style="width:70%; border:1px solid silver; height:70%; margin-top:8%; margin-left:2%;">
 							<div class="row">
-								<div class="col-md-12" id="cajbusqueda"style="width:37%;">
+								<div class="col-md-12" style="width:100%;">
 									<?php 
 										$link = mysql_connect("localhost", "root"); 
 										mysql_select_db("senajuntos", $link); 
 										$texto=$_POST['texto'];
 										$result = mysql_query("SELECT nombre,ape FROM registro WHERE nombre LIKE '%$texto%' ORDER BY nombre", $link); 
 										if ($row = mysql_fetch_array($result)){ 
-										      echo "<table class='table table-striped table-hover'> \n"; 
+										      echo "<table> \n"; 
 										//Mostramos los nombres de las tablas 
 										echo "<tr> \n"; 
 										while ($field = mysql_fetch_field($result)){ 
-										            
+										            echo "<td>$field->name</td> \n"; 
 										} 
 										      echo "</tr> \n"; 
 										do { 
 										            echo "<tr> \n"; 
 										            echo "<td>"."<h4>".$row["nombre"]."</h4>"."</td> \n"; 
-										            echo "<td>"."<h4>".$row["ape"]."</h4>"."</td> \n"; 
+										           echo "<td>"."<h4>".$row["ape"]."</h4>"."</td> \n"; 
 										            echo "</tr> \n"; 
 										      } while ($row = mysql_fetch_array($result)); 
 										            echo "</table> \n"; 

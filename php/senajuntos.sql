@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 23-04-2015 a las 05:24:45
+-- Tiempo de generación: 13-04-2015 a las 13:30:18
 -- Versión del servidor: 5.5.32
 -- Versión de PHP: 5.4.19
 
@@ -57,28 +57,17 @@ CREATE TABLE IF NOT EXISTS `archivos` (
 
 CREATE TABLE IF NOT EXISTS `imagenes` (
   `id_imagen` int(11) NOT NULL AUTO_INCREMENT,
-  `correo` varchar(50) NOT NULL,
   `imagen` varchar(500) NOT NULL,
   PRIMARY KEY (`id_imagen`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=13 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
 
 --
 -- Volcado de datos para la tabla `imagenes`
 --
 
-INSERT INTO `imagenes` (`id_imagen`, `correo`, `imagen`) VALUES
-(1, '', 'img/11058389_915243811871517_7807740413274257437_n.jpg'),
-(2, '', 'img/1400904353135.jpg'),
-(3, '', 'img/11009381_868453463196880_8784255803530544589_n.jpg'),
-(4, '', 'img/10402935_820519528022755_9022821075457699640_n.jpg'),
-(5, '', 'img/11070140_820002211416938_6785423925977588170_n.jpg'),
-(6, '', 'img/10517977_272935242893509_4103316976019909596_n.jpg'),
-(7, '', 'img/10402935_820519528022755_9022821075457699640_n.jpg'),
-(8, '', 'img/11046859_861113623930864_5278688774718727864_n.jpg'),
-(9, '', 'img/FB_IMG_1422788145619.jpg'),
-(10, '', 'img/FB_IMG_1424637817488.jpg'),
-(11, '', 'img/FB_IMG_1422531429778.jpg'),
-(12, '', 'img/FB_IMG_1422436445235.jpg');
+INSERT INTO `imagenes` (`id_imagen`, `imagen`) VALUES
+(1, 'img/11058389_915243811871517_7807740413274257437_n.jpg'),
+(2, 'img/1400904353135.jpg');
 
 -- --------------------------------------------------------
 
@@ -91,17 +80,11 @@ CREATE TABLE IF NOT EXISTS `publicaciones` (
   `message` tinytext NOT NULL,
   `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `fperfil` varchar(500) NOT NULL,
+  `fportada` varchar(500) NOT NULL,
   `fotos` varchar(500) NOT NULL,
-  `comentarios` varchar(500) NOT NULL,
+  `videos` varchar(500) NOT NULL,
   PRIMARY KEY (`id_publicaciones`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
-
---
--- Volcado de datos para la tabla `publicaciones`
---
-
-INSERT INTO `publicaciones` (`id_publicaciones`, `message`, `date`, `fperfil`, `fotos`, `comentarios`) VALUES
-(1, 'oelo', '2015-04-22 12:03:20', '', 'img/', '');
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -127,14 +110,14 @@ CREATE TABLE IF NOT EXISTS `registro` (
   `regional` varchar(250) NOT NULL,
   `centro` varchar(250) NOT NULL,
   PRIMARY KEY (`usuario_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
 --
 -- Volcado de datos para la tabla `registro`
 --
 
 INSERT INTO `registro` (`usuario_id`, `correo`, `clave`, `nombre`, `ape`, `tdoc`, `doc`, `anyo`, `mes`, `dia`, `sexo`, `rol`, `ficha`, `programa`, `regional`, `centro`) VALUES
-(1, 'jegallon4@misena.edu.co', 'c38b4529f4127b2687bfa0dda3adf144c485be02', 'Joan Esteban', 'Gallon Herrera', 'cedula', 1214737772, 1997, 20, 8, 'm', 'ap', 689741, 'ADSI', 'ANTIOQUIA', 'CENTRO TECNOLOGICO DEL MOBILIARIO');
+(3, 'cnavarro43@misena.edu.co', 'f552d28cb071a0f1fe1297605eb2898106361643', 'Carolyn', ' Navarro Restrepo', 'cedula', 1036669187, 1996, 10, 24, 'f', 'ap', 689741, 'ADSI', 'ANTIOQUIA', 'CENTRO TECNOLOGICO DEL MOBILIARIO');
 
 -- --------------------------------------------------------
 
@@ -158,7 +141,7 @@ CREATE TABLE IF NOT EXISTS `usuario` (
 --
 
 INSERT INTO `usuario` (`id_usuario`, `nombre`, `ape`, `rol`, `correo`, `fperfil`, `fportada`) VALUES
-(1, 'Joan Esteban', 'Gallon Herrera', 'ap', 'jegallon4@misena.edu.co', 'img/FB_IMG_1422436445235.jpg', 'img/10402935_820519528022755_9022821075457699640_n.jpg');
+(1, '', '', '', '', 'img/1400904353135.jpg', 'img/11058389_915243811871517_7807740413274257437_n.jpg');
 
 -- --------------------------------------------------------
 

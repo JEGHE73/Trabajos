@@ -68,12 +68,10 @@ h1 span#ttl2{
      #submit{
         color: #fff;
         font-size: 13px;
-        background-color: rgba(4,123,117,0.8);
+        background-color: rgba(4,123,113,0.6);
         background-image: url("background.png");
         background-position: 0 -98px;
         background-repeat: no-repeat;
-        border-color: #29447E #29447E #1A356E;
-       border-style: solid;
        border-width: 1px;
        cursor: pointer;
        display: inline-block;
@@ -159,7 +157,7 @@ h1 span#ttl2{
 							<div class="form-group">
 								<input type="text" name="texto" class="form-control" placeholder="Buscar...">
 							</div>
-							<button type="submit" name="search" class="glyphicon glyphicon-search btn"></button>
+							<button type="submit" name="search" class="glyphicon glyphicon-search btn" style="background-color: rgba(4,123,113,0.6);"></button>
 						</form>
 						<li><a href="inicio.php" class="glyphicon glyphicon-home">Inicio</a></li>
 						<li><a href="perfil.php" class="glyphicon glyphicon-user">Perfil</a></li>
@@ -209,21 +207,17 @@ h1 span#ttl2{
 						<table id="table" class="table table-hover" style="margin-left:6%;">
 							<thead>
 								<tr>
-									<th>                    <?php
-							                include 'php/connect_db.php';
-							                $consulta=mysql_query("SELECT fperfil FROM usuario WHERE correo='".$_SESSION['correo']."'")or die ("error");
-							                           while ($filas=mysql_fetch_array($consulta))
-							                               {
-							                                $img_pub=$filas["fperfil"];
-							                                echo "<img src='$img_pub' width='150' height='150'></a><br>";
-							                               }
+									<th> <?php
+                include 'php/connect_db.php';
+                $consulta=mysql_query("SELECT fperfil FROM usuario WHERE correo='".$_SESSION['correo']."'")or die ("error");
+                           while ($filas=mysql_fetch_array($consulta))
+                               {
+                                $img_pub=$filas["fperfil"];
+                                echo "<img src='$img_pub' width='150' height='150'></a><br>";
+                               }
 
-							                                        ?>
-										<form action="php/pperfil.php" method="post" enctype="multipart/form-data">
-								            <input type="file" name="archivo" id="chgprf" ></input>
-								            <input type="submit" value="Subir archivo"></input>
-										</form>
-									</th>
+                                ?>
+        </th>
 								</tr>
 							</thead>
 							<tbody>
@@ -249,7 +243,7 @@ h1 span#ttl2{
                        $anyo_act=date("Y");
                        $consulta=mysql_query("SELECT anyo FROM registro WHERE correo='".$_SESSION['correo']."'");
                        $anyo=mysql_fetch_array($consulta);
-                       echo $anyo_act - $anyo['anyo']."a&ntildeos";
+                       echo $anyo_act - $anyo['anyo'];
                      ?></td>
 								</tr>
 								<tr>
@@ -288,18 +282,38 @@ h1 span#ttl2{
 						</table>	
 					
 					</div>
-					<div class="col-md-6" style="width:70%; height:70%; margin-top:8%; margin-left:2%;">
+					<div class="col-md-6" style="width:70%; border:1px solid silver; height:70%; margin-top:8%; margin-left:2%;">
 						<div class="row">
 							<div class="col-md-12">
 								<div id="wrapper">	
 								 
 									    <div id="form">
    
-       									<form action="action.php" method="POST" enctype="multipart/form-data" autocomplete="off">
-           									 <input type="file" name="fotos" id="chgprf" value="Fotos" style="margin-left:-130px;"></input>
-									          <input type="text" name="msg" id="msg" maxlength="500" size="50" />
-									          <input type="submit" name="submit" id="submit" value="Publicar" />
-									     </form>
+       						<form action="action.php" method="post" enctype="multipart/form-data">                 
+ <div>
+      <a href="#" class="abrir"><input type="file" name="fotos" id="modal1" value="Fotos" style="margin-left:-130px;" ></input>
+</a>
+
+  </div>
+
+  <div class="modal">
+    <div class="ventana">
+      <div class="boton-cerrar">X</div>
+
+      <img src="
+            <?php 
+            include('wall.php');            
+             ?>"
+/>
+      
+    </div>
+  </div>
+                       <input type="text" name="msg" id="msg" maxlength="200" size="50" />
+                       <input type="submit" name="submit" id="submit" value="Publicar" />
+                       </form>
+
+
+
 									    <div id="loading"><p>Cargando...</p></div>
 									    </div>
 									    
@@ -312,10 +326,10 @@ h1 span#ttl2{
 						    </div>
 						</div>
 				    </div>
-			    </div>
-		   </div>
-       </div>
-   </div> 
+
+    </div>
+ </div>
+ 
 <script>
    function addMessage(){
       
@@ -347,6 +361,10 @@ h1 span#ttl2{
       });      
    };
 </script>
+					</div>
+					
+		</div>
+	</div>
 
 
 	<script>

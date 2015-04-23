@@ -50,17 +50,20 @@ h1 span#ttl2{
 		#galeria1{
 			width: 200px;
 			border: 1px solid silver;
-			margin-left: 10%;
+			margin-left: 5%;
+			margin-top: 5%;
 		}
 		#galeria2{
 			width: 200px;
 			border: 1px solid silver;
-			margin-left: 10%;
+			margin-left: 5%;
+			margin-top: 5%;
 		}
 		#galeria3{
 			width: 200px;
 			border: 1px solid silver;
-			margin-left: 10%;
+			margin-left: 5%;
+			margin-top: 5%;
 		}
 		#galeria1:hover{
 			background: #F5F5F5;
@@ -102,7 +105,7 @@ h1 span#ttl2{
 							<div class="form-group">
 								<input type="text" name="texto" class="form-control" placeholder="Buscar...">
 							</div>
-							<button type="submit" name="search" class="glyphicon glyphicon-search btn"></button>
+							<button type="submit" name="search" class="glyphicon glyphicon-search btn" style="background-color: rgba(4,123,113,0.6);"></button>
 						</form>
 						<li><a href="inicio.php" class="glyphicon glyphicon-home">Inicio</a></li>
 						<li><a href="perfil.php" class="glyphicon glyphicon-user">Perfil</a></li>
@@ -234,59 +237,75 @@ h1 span#ttl2{
 					
 					</div>
 					<div class="col-md-6" style="width:70%; border:1px solid silver; height:70%; margin-top:8%; margin-left:2%;">
-					<?php
+					<div class="row-fluid">
+						<?php
                 include 'php/connect_db.php';
 
                 $consulta=mysql_query("SELECT fportada FROM usuario WHERE correo='".$_SESSION['correo']."'");
                                while ($filas=mysql_fetch_array($consulta))
                                {
                                 $img_pub=$filas["fportada"];
-                                echo "<img src='$img_pub' width='938' height='445'></a><br>";
-                               }
+                                echo "<div class='row'>
+                               		<div class='col-md-12'>
+				    				<img src='$img_pub'  class='img-responsive' alt='Responsive image'style='width:100%; height:400px;'>
+				    				</div>
+									
+									<div class='row'>
+										<div class='col-md-4 col-md-offset-7'>
+												<form class='form-horizontal'action='php/gportada.php' method='post' enctype='multipart/form-data'>
+							                        <input type='file' name='archivo' id='chgprt' style='margin-top:-130px; margin-left:90%;'></input>
+							                        <input type='submit' value='Subir archivo' style='margin-top:-270px; margin-left:89%;'></input>
+									            </form>
+					    				</div>
+				    				</div>
 
-        ?>
-					<nav class="navbar navbar-default" role="navigation" style="width:50%;margin-left:50%;margin-top:-60px;">
+				    				</div>";
+				    				echo "<div class='col-md-11 col-md-offset-1'><nav class='navbar navbar-default' role='navigation' style='width:50%;margin-left:50%;margin-top:-60px;'>
 						<!-- Brand and toggle get grouped for better mobile display -->
-						<div class="navbar-header">
-							<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-								<span class="sr-only">Toggle navigation</span>
-								<span class="icon-bar"></span>
-								<span class="icon-bar"></span>
-								<span class="icon-bar"></span>
+						<div class='navbar-header'>
+							<button type='button' class='navbar-toggle' data-toggle='collapse' data-target='.navbar-ex1-collapse'>
+								<span class='sr-only'>Toggle navigation</span>
+								<span class='icon-bar'></span>
+								<span class='icon-bar'></span>
+								<span class='icon-bar'></span>
 							</button>
 						</div>
 					
 						<!-- Collect the nav links, forms, and other content for toggling -->
-						<div class="collapse navbar-collapse navbar-ex1-collapse">
-							<ul class="nav navbar-nav navbar-right">
-								<li><a href="perfil.php">Biografia</a></li>
-								<li><a href="galeria.php">Galerìa</a></li>
-								<li><a href="#">Amigos</a></li>
-								<li><a href="#">Ayuda</a></li>
+						<div class='collapse navbar-collapse navbar-ex1-collapse'>
+							<ul class='nav navbar-nav navbar-right'>
+								<li><a href='perfil.php'>Biografia</a></li>
+								<li><a href='galeria.php'>Galerìa</a></li>
+								<li><a href='#''>Amigos</a></li>
+								<li><a href='#'>Ayuda</a></li>
 							</ul>
 						</div><!-- /.navbar-collapse -->
-					</nav>
-					<form action="php/gportada.php" method="post" enctype="multipart/form-data">
-                        <input type="file" name="archivo" id="chgprt" style="margin-top:-130px; margin-left:90%;"></input>
-                        <input type="submit" value="Subir archivo" style="margin-top:-270px; margin-left:89%;"></input>
-		            </form>
-				<center>
-				<div class="row">
-				    <div class="col-md-4" id="galeria1">
-				    	<p>Fotos</p>
-						<a href="fotos.php"><img src="img/logo.png" style="width:50%; height:80%; opacity:0.6;"></a>
+					</nav></div>";
+                               }
+
+        ?>
 					</div>
-				    <div class="col-md-4" id="galeria2">
-				     	<p>Videos</p>
-					    	<a href="videos.php"><img src="img/video.png" style="width:50%; height:80%; opacity:0.6;"></a>
-				    	</div>
-				    <div class="col-md-4" id="galeria3">
-					   	<p>Archivos</p>
-					    <a href="archivos.php"><img src="img/archivos.png" style="width:50%; height:80%; opacity:0.6;"></a>
-				    </div>
-				    
-				  </div>
-				  </center>
+				
+					<div class="container"style="width:100%; border:1px solid silver; height:70%; margin-top:12%;">
+						<div class="row">
+								<div class="col-md-12"style="margin-top:3%;">
+									<center>
+									<div class="col-md-4" id="galeria1">
+							    	<p>Fotos</p>
+									<a href="fotos.php"><img src="img/logo.png" class="img-responsive" alt="Responsive image" style="width:50%; height:80%; opacity:0.6;"></a>
+									</div>
+								    <div class="col-md-4" id="galeria2">
+								     	<p>Videos</p>
+									    	<a href="videos.php"><img src="img/video.png" class="img-responsive" alt="Responsive image" style="width:50%; height:80%; opacity:0.6;"></a>
+								    </div>
+								    <div class="col-md-4" id="galeria3">
+									   	<p>Archivos</p>
+									    <a href="archivos.php"><img src="img/archivos.png" class="img-responsive" alt="Responsive image" style="width:50%; height:80%; opacity:0.6;"></a>
+								    </div>
+								    </center>
+								</div>
+					  		</div>
+					</div>
 				</div>
 		</div>
 	</div>

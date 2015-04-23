@@ -64,7 +64,7 @@ if(isset($_POST['submit'])){
             }
             function aparece(){
                 c = document.getElementById("regional").value;
-                if(c=='Seleccione'){
+                                if(c=='Seleccione'){
                     document.getElementById('muestra').innerHTML = '';
                 }
                 if(c=='ANTIOQUIA'){

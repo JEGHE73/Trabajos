@@ -1,3 +1,4 @@
+
 <?php
 
 /*
@@ -21,23 +22,36 @@ echo '<ul id="message">';
 if($query == true){
    //Recorro todos los campos de la tabla y los muestro
    while ($row = mysql_fetch_array($query)){
-   	$msg=$row["message"];
+    $msg=$row["message"];
     $img_pub=$row["fotos"];
    if (!empty($msg)) {
-    	echo "<hr><img src='img/perfil.png' style='width:10%;heigth:20%;'><li><p>".$row['message']."<span id=\"date\">".$row['date']."</span><span><form class='form-inline'action='action.php' method='POST' enctype='multipart/form-data' autocomplete='OFF'>
-           									  <input type='text' name='msg' id='msg' maxlength='500' size='50' style='width:;'/>
-									          <input type='submit' name='submit' id='submit' value='Publicar' />
-									     </form></span><span><hr></span></li>";
+      $consulta=mysql_query("SELECT nombre,ape,fperfil FROM usuario WHERE correo='".$_SESSION['correo']."'")or die ("error");
+                           while ($filas=mysql_fetch_array($consulta))
+                               {
+                                $img_nombre=$filas["nombre"];
+                               $img_ape=$filas["ape"];
+                                $img_perfil=$filas["fperfil"];
+
+                                echo "<img src='$img_perfil' style='width:40px'; 'height:40px;'>".$img_nombre.' '.$img_ape."<li><p>".'<br>'.$row['message']." <span id=\"date\">".$row['date']."</span><hr></li>";
+                               }
+
     } 
-	else{
-    	echo "<img src='img/perfil.png' style='width:10%;heigth:20%;'><li><p>"."<img src='$img_pub' width='150' heigth='150'>"."<br>"." <span id=\"date\">".$row['date']."</span><hr></li>";
+  else{
+    $consulta=mysql_query("SELECT nombre,ape,fperfil FROM usuario WHERE correo='".$_SESSION['correo']."'")or die ("error");
+                           while ($filas=mysql_fetch_array($consulta))
+                               {
+                                 $img_nombre=$filas["nombre"];
+                               $img_ape=$filas["ape"];
+                                $img_perfil=$filas["fperfil"];
+      echo "<img src='$img_perfil'  style='width:40px'; 'height:40px;'>".$img_nombre.' '.$img_ape."<li><p>"."<img src='$img_pub' width='300' height='300' class='boton-abrir'>"."<br>"." <span id=\"date\">".$row['date']."</span><hr style='color:black;'></li>";
+       }
     }
     /*else{
-    	echo "<img src='img/perfil.png' style='width:10%;heigth:20%;'><li><p>"."<img src='$img_pub' width='150' heigth='150'>"."<br>".$row['message']." <span id=\"date\">".$row['date']."</span><hr></li>";
+      echo "<img src='img/perfil.png' style='width:10%;heigth:20%;'><li><p>"."<img src='$img_pub' width='150' heigth='150'>"."<br>".$row['message']." <span id=\"date\">".$row['date']."</span><hr></li>";
     }*/
    }
    
 }
 echo '</ul>'
 ?>
- 
+
